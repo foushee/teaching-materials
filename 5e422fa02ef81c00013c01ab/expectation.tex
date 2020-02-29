@@ -1,0 +1,86 @@
+\documentclass{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\allowdisplaybreaks
+\let\P\undefined
+\DeclareMathOperator\P{\mathbb{P}}
+\DeclareMathOperator\E{\mathbb{E}}
+\DeclareMathOperator\Var{Var}
+\newcommand\halfcomma{\mskip 1.5mu}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Psych 205: Statistical Models}
+\rhead{Homework 1}
+\lfoot{Foushee, Ruthe}
+\cfoot{}
+\rfoot{\thepage}
+\setlength\parindent{0pt}
+%(\texttt{mean(x)}
+\begin{document}
+\begin{enumerate}
+    \item Let \(X\) and \(Y\) be random variables.
+Let \(\{x_{1}, \dotsc, x_{n}\}\) be the values \(X\) takes, and \(\{y_{1}, \dotsc, y_{m}\}\) the values \(Y\) takes.\\
+
+The expectation of \(X\) is given by
+\begin{equation*}
+\E X = \sum_{i = 1}^{n} \P(X = x_{i}) \halfcomma x_{i}
+\end{equation*}
+and the expectation of \(Y\) is given by
+\begin{equation*}
+\E Y = \sum_{j = 1}^{m} \P(Y = y_{j}) \halfcomma y_{j}
+.
+\end{equation*}
+To find the expectation of \(X + Y\), sum over the values that \(X\) and \(Y\) can take.
+\begin{align*}
+\E (X + Y) &= \sum_{i = 1}^{n} \sum_{j = 1}^{m} \P(X = x_{i}\text{ and }Y = y_{j})(x_{i} + y_{j})\\
+&= \sum_{i = 1}^{n} \sum_{j = 1}^{m} \P(X = x_{i}) \P(Y = y_{j}) (x_{i} + y_{j})\\
+&= \sum_{i = 1}^{n} \P(X = x_{i}) \sum_{j = 1}^{m} \P(Y = y_{j}) (x_{i} + y_{j})\\
+&= \sum_{i = 1}^{n} \P(X = x_{i}) \Big[\sum_{j = 1}^{m} \P(Y = y_{j}) \halfcomma x_{i} + \P(Y = y_{j}) \halfcomma y_{j}\Big]\\
+&= \sum_{i = 1}^{n} \P(X = x_{i}) \Big[\big[\sum_{j = 1}^{m} \P(Y = y_{j}) \halfcomma x_{i}\big] + \big[\sum_{j = 1}^{m} \P(Y = y_{j}) \halfcomma y_{j}\big]\Big]\\
+&= \sum_{i = 1}^{n} \P(X = x_{i}) \Big[\big[x_{i} \sum_{j = 1}^{m} \P(Y = y_{j})\big] + \E Y\Big]\\
+&= \sum_{i = 1}^{n} \P(X = x_{i}) \Big[x_{i} \cdot 1 + \E Y\Big]\\
+&= \sum_{i = 1}^{n} \P(X = x_{i}) \halfcomma x_{i} + \P(X = x_{i}) \E Y\\
+&= \big[\sum_{i = 1}^{n} \P(X = x_{i}) \halfcomma x_{i}\big] + \big[\sum_{i = 1}^{n} \P(X = x_{i}) \E Y\big]\\
+&= \E X + \big[\E Y \sum_{i = 1}^{n} \P(X = x_{i})\big]\\
+&= \E X + \E Y \cdot 1
+= \E X + \E Y
+\end{align*}
+\newpage
+\item The variance is, by definition, \(\E[(X + Y) - \E(X + Y)]^{2}\) (the expectation of the square, not the expectation squared).
+\begin{align*}
+\mathrlap{\E[(X + Y) - \E(X + Y)]^{2}}\qquad &\\
+&= \sum_{i = 1}^{n} \sum_{j = 1}^{m} \P(X = x_{i}\text{ and }Y = y_{j})[x_{i} + y_{j} - \E(X + Y)]^{2}\\
+&= \sum_{i = 1}^{n} \sum_{j = 1}^{m} \P(X = x_{i}) \P(Y = y_{j}) [x_{i} + y_{j} - \E(X + Y)]^{2}\\
+&= \sum_{i = 1}^{n} \sum_{j = 1}^{m} \P(X = x_{i}) \P(Y = y_{j}) [x_{i} + y_{j} - (\E X + \E Y)]^{2}\\
+&= \sum_{i = 1}^{n} \sum_{j = 1}^{m} \P(X = x_{i}) \P(Y = y_{j}) [(x_{i} - \E X) + (y_{j} - \E Y)]^{2}\\
+&= \sum_{i = 1}^{n} \sum_{j = 1}^{m} \P(X = x_{i}) \P(Y = y_{j}) [(x_{i} - \E X)^{2} + (y_{j} - \E Y)^{2} + 2(x_{i} - \E X)(y_{j} - \E Y)]\\
+&= \sum_{i = 1}^{n} \P(X = x_{i}) \sum_{j = 1}^{m} \P(Y = y_{j}) [(x_{i} - \E X)^{2} + (y_{j} - \E Y)^{2} + 2(x_{i} - \E X)(y_{j} - \E Y)]\\
+\begin{split}
+&= \sum_{i = 1}^{n} \P(X = x_{i}) \Big[\\
+&\qquad \big[\sum_{j = 1}^{m} \P(Y = y_{j})(x_{i} - \E X)^{2}\big] + {}\\
+&\qquad \big[\sum_{j = 1}^{m}\P(Y = y_{j}) (y_{j} - \E Y)^{2}\big] + {}\\
+&\qquad \big[\sum_{j = 1}^{m}\P(Y = y_{j}) \cdot 2(x_{i} - \E X)(y_{j} - \E Y)\big]\\
+&\quad \Big]
+\end{split}\\
+\begin{split}
+&= \sum_{i = 1}^{n} \P(X = x_{i}) \Big[\\
+&\qquad \big[(x_{i} - \E X)^{2}\sum_{j = 1}^{m} \P(Y = y_{j})\big] + {}\\
+&\qquad \E[Y - \E Y]^{2} + {}\\
+&\qquad \big[2(x_{i} - \E X)\sum_{j = 1}^{m}\P(Y = y_{j})(y_{j} - \E Y)\big]\\
+&\quad \Big]
+\end{split}\\
+&= \sum_{i = 1}^{n} \P(X = x_{i}) \Big[
+\big[(x_{i} - \E X)^{2} \cdot 1\big] +
+\Var(Y) +
+2(x_{i} - \E X) \E[Y - \E Y]\Big]\\
+&= \sum_{i = 1}^{n} \P(X = x_{i}) \Big[(x_{i} - \E X)^{2} + \Var(Y) + 2(x_{i} - \E X)(\E Y - \E Y)\Big]\\
+&= \sum_{i = 1}^{n} \P(X = x_{i}) \Big[(x_{i} - \E X)^{2} + \Var(Y) + 2(x_{i} - \E X) \cdot 0\Big]\\
+%Looks OK to me without a manual space before `\Var`, probably because of the shape of 'V.'
+&= \big[\sum_{i = 1}^{n} \P(X = x_{i})(x_{i} - \E X)^{2}\big] + \big[\sum_{x = 1}^{n}\P(X = x_{i}) \Var(Y)\big]\\
+&= \E[X - \E X]^{2} + \Var(Y)\sum_{x = 1}^{n}\P(X = x_{i})\\
+&= \Var(X) + \Var(Y) \cdot 1
+= \Var(X) + \Var(Y)
+\end{align*}
+\end{enumerate}
+\end{document}

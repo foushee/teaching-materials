@@ -1,0 +1,76 @@
+\documentclass[11pt]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\allowdisplaybreaks
+\let\P\undefined
+\DeclareMathOperator\E{\mathbb{E}}
+\DeclareMathOperator\P{\mathbb{P}}
+\DeclareMathOperator\Var{Var}
+%\pagestyle{empty}
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\lhead{Psych 205: Statistical Models}
+\rhead{Homework 2: Regression}
+\lfoot{Foushee}
+\cfoot{}
+\rfoot{\thepage}
+\setlength\parindent{0pt}
+
+\begin{document}
+\textbf{Least Mean Square Error for Bi-Variate Regression}\\
+
+The below illustrates the process we could have taken to find the least mean square error solution for bi-variate regression (which Homework 2 gives and asks us to extend to multivariate regression). You can use these steps to find the equations for the least mean square error solution for multi-variate regression.\\
+\hline
+\vspace{15pt}
+%This is intended as an illustration of the 
+%Let \(X\) and \(Y\) be random variables.\\
+%Let \(\{x_{1}, \dotsc, x_{n}\}\) be the values \(X\) takes, and \(\{y_{1}, \dotsc, y_{m}\}\) the values \(Y\) takes.\\
+
+
+The \textbf{error} is the distance of the actual values of \(Y\) from the values we predicted using our regression equation. That is:\\
+
+\(Y - (\alpha + \beta X)\).\\
+
+The \textbf{mean square error} is the expectation of the squared errors:
+\begin{align*}
+\E\bigl[Y - (\alpha + \beta X)\bigr]^{2} &= \E\bigl[Y^{2} - 2Y(\alpha + \beta X) + (\alpha + \beta X)^{2}\bigr]\\
+&= \E\bigl[Y^{2} - 2 \alpha Y - 2\beta X Y + \alpha^{2} + 2 \alpha \beta X + \beta^{2} X^{2}\bigr]\\
+&= \E Y^{2} - 2 \alpha \E Y - 2 \beta \E X Y + \alpha^{2} + 2 \alpha \beta \E X + \beta^{2} \E X^{2}
+.
+\end{align*}
+
+We want to find the values for \(\alpha\) and \(\beta\) that \textbf{minimize} the mean square error.\\
+
+So we take the \textbf{partial derivative}\\
+with respect to \(\alpha\) and
+\begin{align*}
+\frac{\partial}{\partial\alpha} \E\bigl[Y - (\alpha + \beta X)\bigr]^{2} &= -2 \E Y + 2 \alpha + 2 \beta \E X
+\end{align*}
+with respect to \(\beta\)
+\begin{align*}
+\frac{\partial}{\partial\beta} \E\bigl[Y - (\alpha + \beta X)\bigr]^{2} &= -2 \E X Y + 2 \alpha \E X + 2 \beta \E X^{2}
+\end{align*}
+\ldots and we \textbf{set them to zero}.\\
+
+Setting the partial derivatives to zero, we get a \textbf{system of equations}.
+\begin{align*}
+0 &= -2 \E Y + 2 \alpha + 2 \beta \E X\\
+\E Y &= \alpha + \beta \E X\\
+0 &= -2 \E X Y + 2 \alpha \E X + 2 \beta \E X ^{2}\\
+\E X Y &= \alpha \E X + \beta \E X ^{2}
+\end{align*}
+Next we \textbf{solve for \(\alpha\)}.
+\begin{align*}
+\E Y &= \alpha + \beta \E X\\
+\alpha &= \E Y - \beta \E X
+\end{align*}
+And now we can \textbf{substitute} to solve for \(\beta\).
+\begin{align*}
+\E X Y &= \alpha \E X + \beta \E X ^{2}\\
+\E X Y &= (\E Y - \beta \E X) \E X + \beta \E X ^{2}\\
+\E X Y &= \E X \, \E Y - \beta (\E X)^{2} + \beta \E X ^{2}\\
+\E X Y - \E X \, \E Y &= \big[\E X^{2} - (\E X)^{2}\big] \beta\\
+\beta &= \frac{\E X Y - \E X \, \E Y}{\E X^{2} - (\E X)^{2}}
+\end{align*}
+\end{document}

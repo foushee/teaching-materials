@@ -1,0 +1,21 @@
+\documentclass{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\allowdisplaybreaks
+\DeclareMathOperator\E{\mathbb{E}}
+\DeclareMathOperator\Var{Var}
+\pagestyle{empty}
+\setlength\parindent{0pt}
+\begin{document}
+We start with \(\hat{Y} = \alpha + \beta X\).
+The parametrization is a little artificial: \(\alpha\) is the intercept, but maybe \(X\) is never \(0\), so it doesn't make much sense to think of it as `the value \(\hat{Y}\) takes when \(X = 0\).'
+`More natural units' for \(\hat{Y}\) and \(X\) would be their differences from the means.
+\begin{align*}
+\hat{Y} &= \alpha + \beta X\\
+(\hat{Y} - \E Y) + \E Y&= \alpha + \beta (X - \E X) + \beta \E X\\
+(\hat{Y} - \E Y) &= \alpha + \beta (X - \E X) + \beta \E X - \E Y\\
+(\hat{Y} - \E Y) &= \big[\alpha - (\E Y - \beta \E X)\big] + \beta (X - \E X)
+\end{align*}
+So we can interpet \(\alpha = \E Y - \beta \E X\) as `if \(X\) and \(Y\) both had mean zero, we'd want \(\hat{Y} = 0\) when \(X = 0\).'
+\end{document}

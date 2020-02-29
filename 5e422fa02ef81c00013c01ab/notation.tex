@@ -1,0 +1,56 @@
+\documentclass{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\allowdisplaybreaks
+\let\P\undefined
+\DeclareMathOperator\E{\mathbb{E}}
+\DeclareMathOperator\P{\mathbb{P}}
+\DeclareMathOperator\Var{Var}
+\usepackage{multirow}
+%\pagestyle{empty}
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\lhead{Psych 205: Statistical Models}
+\rhead{Homework 2}
+\lfoot{Foushee}
+\cfoot{}
+\rfoot{\thispage}
+\setlength\parindent{0pt}
+%(\texttt{mean(x)}
+\begin{document}
+
+Let \(X\) be a random variable, and take the values \(\{x_{1}, \dotsc, x_{n}\}\).
+
+The expectation of \(X\) is given by
+\begin{table}[]
+    \centering
+\begin{tabular}{rl}
+    \multirow{2}{20pt}{\((\E X)\)} & `the expectation of \(X\)'\\
+        & `the expected value of \(X\)'\\ 
+    \(\mu_x\) & `mean of \(X\)'\\
+\end{tabular}
+\caption{Caption}
+    \label{tab:my_label}
+\end{table}
+
+%The expectation of \(X\) or expected value of \(X\) \((\E X)\) is the same as the mean of \(X\) \(\mu_X\) is the same as \(\bar{X}\)
+
+\begin{equation*}
+\E X = \sum_{i = 1}^{n} \P(X = x_{i}) \halfcomma x_{i}
+\end{equation*}
+
+
+
+Let \(X\) and \(Y\) be random variables.
+Let \(\{x_{1}, \dotsc, x_{n}\}\) be the values \(X\) takes, and \(\{y_{1}, \dotsc, y_{m}\}\) the values \(Y\) takes.
+The expectation, expected value, or mean of \(X\) is given by
+\begin{equation*}
+\E X = \sum_{i = 1}^{n} \P(X = x_{i}) \halfcomma x_{i}
+\end{equation*}
+and the expectation of \(Y\) is given by
+\begin{equation*}
+\E Y = \sum_{j = 1}^{m} \P(Y = y_{j}) \halfcomma y_{j}
+.
+\end{equation*}
+\end{document}

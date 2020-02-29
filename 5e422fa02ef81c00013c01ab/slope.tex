@@ -1,0 +1,44 @@
+\documentclass{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage[dvipsnames]{xcolor}
+\allowdisplaybreaks
+\DeclareMathOperator\E{\mathbb{E}}
+\DeclareMathOperator\Var{Var}
+\newcommand\highlight[1]{{\color{red}#1}}
+\newcommand\denominator{\tfrac{1}{n}\sum_{i = 1}^{n}{(x_{i} - \E X )^{2}}}
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\lhead{Psych 205: Statistical Models}
+\rhead{Bi-variate Regression Intuitions}
+\lfoot{Foushee}
+\cfoot{}
+\rfoot{\thispage}
+\setlength\parindent{0pt}
+\setlength\parindent{0pt}
+\begin{document}
+The below illustrates three cases as a brief demonstration of why the equation for \(\beta\) for bi-variate regression, given and extended in Homework 2, `makes sense.'\\
+
+Suppose first that \(Y\) was exactly equal to \(X\). We'd like to get a slope of \(1\).
+\begin{align*}
+\beta &= \frac{\tfrac{1}{n}\sum_{i = 1}^{n}{(x_{i} - \E X )\highlight{(y_{i} - \E Y)}}}{\denominator}\\
+&= \frac{\tfrac{1}{n}\sum_{i = 1}^{n}{(x_{i} - \E X )\highlight{(x_{i} - \E X )}}}{\denominator}\\
+&= \frac{\denominator}{\denominator} = 1
+\end{align*}
+Suppose now that \(Y\) is a multiple of \(X\): \(Y = \delta X\). We'd like to get a slope of \(\delta\).
+\begin{align*}
+\beta &= \frac{\tfrac{1}{n}\sum_{i = 1}^{n}{(x_{i} - \E X)\highlight{(y_{i} - \E Y)}}}{\denominator}\\
+&= \frac{\tfrac{1}{n}\sum_{i = 1}^{n}{(x_{i} - \E X)\highlight{(\delta x_{i} - \E[\delta X])}}}{\denominator}\\
+&= \frac{\tfrac{1}{n}\sum_{i = 1}^{n}{(x_{i} - \E X)\highlight{(\delta x_{i} - \delta\E X)}}}{\denominator}\\
+&= \frac{\tfrac{1}{n}\sum_{i = 1}^{n}{\highlight{\delta}(x_{i} - \E X)^{2}}}{\denominator} = \highlight{\delta}
+\end{align*}
+Finally, suppose that \(Y\) is a linear function of \(X\): \(Y = \gamma + \delta X\). We'd still like to get a slope of \(\delta\).
+\begin{align*}
+\beta &= \frac{\tfrac{1}{n}\sum_{i = 1}^{n}{(x_{i} - \E X)\highlight{(y_{i} - \E Y)}}}{\denominator}\\
+&= \frac{\tfrac{1}{n}\sum_{i = 1}^{n}{(x_{i} - \E X)\highlight{((\gamma + \delta x_{i}) - \E[\gamma + \delta X])}}}{\denominator}\\
+&= \frac{\tfrac{1}{n}\sum_{i = 1}^{n}{(x_{i} - \E X)\highlight{((\gamma + \delta x_{i}) - (\gamma + \delta \E X))}}}{\denominator}\\
+&= \frac{\tfrac{1}{n}\sum_{i = 1}^{n}{(x_{i} - \E X)\highlight{((\gamma - \gamma) + \delta(x_{i} - \E X))}}}{\denominator}\\
+&= \frac{\tfrac{1}{n}\sum_{i = 1}^{n}{\highlight{\delta}(x_{i} - \E X)^{2}}}{\denominator} = \highlight{\delta}
+\end{align*}
+\end{document}
